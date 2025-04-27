@@ -64,8 +64,8 @@ Funcionalidades
 
 ## Estrutura do Projeto
 
-.env                # Arquivo de configuração de variáveis de ambiente
-.gitignore          # Arquivo para ignorar arquivos sensíveis no controle de versão
-furiapp_bot.py      # Código principal do bot
-logo.jpg            # Imagem do logo (opcional)
-read.me             # Este arquivo README
+.env                 # Arquivo de configuração de variáveis de ambiente
+.gitignore           # Arquivo para ignorar arquivos sensíveis no controle de versão
+furiapp_bot.py       # Código principal do bot
+logo.jpg             # Imagem do logo (opcional)
+read.me              # Este arquivo README
