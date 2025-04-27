@@ -42,7 +42,6 @@ Certifique-se de que o bot foi adicionado ao grupo ou canal desejado e que possu
 
 No terminal, navegue até o diretório do projeto e execute o seguinte comando:
 
-bash
 python furiapp_bot.py
 
 2. **Interaja com o bot no Telegram.**
@@ -50,11 +49,17 @@ python furiapp_bot.py
 Abra o Telegram, procure pelo seu bot (usando o nome ou o username configurado no BotFather) e envie o comando /start para começar a interação.
 
 Funcionalidades
+
 📅 Últimos Jogos: Exibe os últimos jogos da equipe FURIA.
+
 📰 Últimas Notícias: Mostra as notícias mais recentes sobre a equipe.
+
 🎲 Quiz: Um quiz interativo com perguntas sobre a FURIA.
+
 👥 Nossas Feras: Lista os integrantes do time de CS:GO com links para seus perfis no Instagram.
+
 🔗 Links Úteis: Links para as redes sociais e canais oficiais da FURIA.
+
 👋 Até a próxima!: Encerra a interação com o bot.
 
 ## Estrutura do Projeto
