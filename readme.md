@@ -25,7 +25,9 @@ Antes de iniciar, certifique-se de ter os seguintes itens instalados:
 3. **Configure as variáveis de ambiente.**
 
 Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis:
-telegram_secret_key=SEU_TOKEN_DO_TELEGRAM 
+
+telegram_secret_key=SEU_TOKEN_DO_TELEGRAM
+
 panda_api_key=SUA_CHAVE_DE_API_DO_PANDASCORE
 
 Substitua `SEU_TOKEN_DO_TELEGRAM` pelo token do seu bot do Telegram e `SUA_CHAVE_DE_API_DO_PANDASCORE` pela sua chave de API do PandaScore.
