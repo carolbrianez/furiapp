@@ -36,13 +36,13 @@ logger = logging.getLogger(__name__)
 quiz_questions = [
     {
         "pergunta": "Quem é o capitão do time de CS:GO da FURIA?",
-        "opcoes": ["Art", "KSCERATO", "yuurih", "saffee"],
-        "resposta": "Art"
+        "opcoes": ["Art", "KSCERATO", "yuurih", "saffee", "FalleN"],
+        "resposta": "FalleN"
     },
     {
         "pergunta": "Qual é o nome do treinador do time de CS:GO da FURIA?",
-        "opcoes": ["guerri", "zews", "peacemaker", "bit"],
-        "resposta": "guerri"
+        "opcoes": ["zews", "peacemaker","sidde", "bit", "guerri"],
+        "resposta": "sidde"
     },
     {
         "pergunta": "Em que ano a organização FURIA foi fundada?",
@@ -51,7 +51,7 @@ quiz_questions = [
     },
     {
         "pergunta": "Qual país a organização FURIA representa?",
-        "opcoes": ["Brasil", "Estados Unidos", "Canadá", "Portugal"],
+        "opcoes": ["Estados Unidos", "Canadá", "Brasil", "Portugal"],
         "resposta": "Brasil"
     },
     {
@@ -61,7 +61,7 @@ quiz_questions = [
     },
     {
         "pergunta": "Quantos jogadores compõem o time titular de CS:GO?",
-        "opcoes": ["5", "6", "4", "7"],
+        "opcoes": ["6", "5", "4", "7"],
         "resposta": "5"
     },
     {
@@ -144,12 +144,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         string_resultado_formatado = ""
         separador = "*" * 40
 
-        jogos = await get_last_3_matches()
+        jogos = await buscar_ultimos_3_jogos()
         for jogo in jogos:
-            match_date = jogo.get('match_date', 'Unknown date')
+            data_partida = jogo.get('data_partida', 'Unknown date')
             vs_text = jogo.get('vs_text', 'TBD')
-            result = jogo.get('result', 'TBD')
-            string_resultado_formatado += f"🗓️ {match_date} \n {vs_text} \n {result}\n {separador} \n"
+            resultado = jogo.get('resultado', 'TBD')
+            string_resultado_formatado += f"🗓️ {data_partida} \n {vs_text} \n {resultado}\n {separador} \n"
 
         await query.message.reply_text(
                 f"🕹️ Últimos Jogos da FURIA:\n {string_resultado_formatado}",
@@ -228,55 +228,55 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     elif query.data == "encerrar":
         await query.edit_message_text(
-            "👋 Obrigado por usar o Furiapp! Até a próxima! 🐾"
+            "👋 Obrigado por usar o Furiapp! Até a próxima! 🐾🖤"
         )
         logger.info(f"Usuário {query.from_user.first_name} encerrou a interação.")
 
 # Função para buscar os últimos jogos da FURIA na API
-async def get_last_3_matches():
+async def buscar_ultimos_3_jogos():
     jogos = []
     try:
         # Faz a requisição para a API
-        response = requests.get(url_pandascore, headers=headers)
+        resposta_api = requests.get(url_pandascore, headers=headers)
         
         # Verifica se a resposta foi bem-sucedida
-        if response.status_code != 200:
-            print(f"Erro: Código de status recebido {response.status_code}")
-            print(response.json())
+        if resposta_api.status_code != 200:
+            print(f"Erro: Código de status recebido {resposta_api.status_code}")
+            print(resposta_api.json())
             return
         
         # Analisa a resposta
-        matches = response.json()
+        jogos = resposta_api.json()
         
         # Verifica se foram encontrados jogos
-        if not matches:
+        if not jogos:
             print("Nenhum jogo encontrado para o time especificado.")
             return
         
         # Processa e exibe os jogos
         print(f"Últimos 3 jogos da {EQUIPE}:")
-        for match in matches:
+        for jogo in jogos:
             # Extrai os detalhes do jogo
-            match_date = match.get('begin_at', 'Data desconhecida')
-            if match_date:
-                match_date = datetime.datetime.fromisoformat(match_date.replace('Z', '+00:00')).strftime('%Y-%m-%d %H:%M')
+            data_partida = jogo.get('begin_at', 'Data desconhecida')
+            if data_partida:
+                data_partida = datetime.datetime.fromisoformat(data_partida.replace('Z', '+00:00')).strftime('%Y-%m-%d %H:%M')
             
             # Obtém os nomes dos oponentes
-            opponents = []
-            for team in match.get('opponents', []):
-                opponent = team.get('opponent', {})
-                opponents.append(opponent.get('name', 'TBD'))
-            vs_text = " vs ".join(opponents) if len(opponents) == 2 else "TBD"
+            oponentes = []
+            for time in jogo.get('opponents', []):
+                oponente = time.get('opponent', {})
+                oponentes.append(oponente.get('name', 'TBD'))
+            vs_text = " vs ".join(oponentes) if len(oponentes) == 2 else "TBD"
             
             # Obtém o resultado ou status do jogo
-            status = match.get('status', 'desconhecido')
-            winner = match.get('winner', {}).get('name', 'Nenhum') if match.get('winner') else "Nenhum"
+            status = jogo.get('status', 'desconhecido')
+            vencedor = jogo.get('winner', {}).get('name', 'Nenhum') if jogo.get('winner') else "Nenhum"
             
-            result = f"Status: {status}, Vencedor: {winner}"
+            resultado = f"Status: {status}, Vencedor: {vencedor}"
             jogos.append({
-                "match_date" : match_date,
+                "data_partida" : data_partida,
                 "vs_text" : vs_text,
-                "result": result
+                "resultado": resultado
             })
         return jogos         
     except Exception as e:
