@@ -1,80 +1,104 @@
-# Furiapp Bot
+# 🤖 Furiapp Bot
 
-Este é um bot do Telegram desenvolvido para interagir com os fãs da equipe FURIA Esports. Ele oferece funcionalidades como exibição de últimos jogos, notícias, quiz interativo, informações sobre os integrantes do time e links úteis.
+**Bot do Telegram desenvolvido para interagir e engajar a comunidade de fãs da equipe FURIA Esports.**
 
-## Pré-requisitos
+Este bot atende a fãs fervorosos, oferecendo acesso rápido a informações cruciais sobre o time, jogos recentes, notícias e uma experiência de quiz interativo.
 
-Antes de iniciar, certifique-se de ter os seguintes itens instalados:
+## 🎯 Contexto do Projeto (Processo Seletivo FURIA)
 
-- Python 3.8 ou superior
-- Um token de bot do Telegram (gerado pelo BotFather)
-- Uma chave de API do PandaScore (para acessar informações sobre os jogos)
-- Biblioteca `pip` para gerenciar dependências
+Este projeto foi desenvolvido como parte de um **Processo Seletivo para a vaga de Engenheiro(a) de Software na FURIA Esports**.
 
-## Configuração
+O objetivo principal foi demonstrar habilidades de **integração de APIs externas (PandaScore)**, desenvolvimento de **lógica de aplicação (Python)** e construção de uma **interface conversacional (Telegram Bot)**, tudo focado na paixão e na marca da organização.
 
-1. **Clone o repositório ou copie os arquivos para o seu ambiente local.**
+## ✨ Funcionalidades
 
-2. **Instale as dependências do projeto.**
+O bot foi projetado para fornecer as seguintes interações através de comandos no Telegram:
 
-   Execute o seguinte comando no terminal para instalar as bibliotecas necessárias:
+* **📅 Últimos Jogos:** Exibe o placar e detalhes dos últimos confrontos da equipe FURIA (via integração com PandaScore).
+* **📰 Últimas Notícias:** Mostra as notícias mais recentes sobre a equipe e seus jogadores.
+* **🎲 Quiz:** Um quiz interativo com perguntas sobre a história e os membros da FURIA para testar o conhecimento dos fãs.
+* **👥 Nossas Feras:** Lista os integrantes da equipe (presumivelmente CS:GO, conforme o código) com links diretos para seus perfis no Instagram.
+* **🔗 Links Úteis:** Fornece acesso rápido às redes sociais e canais oficiais da FURIA.
+* **👋 Até a próxima!:** Comando para encerrar a sessão de interação.
 
-   ```bash
-   pip install python-telegram-bot python-dotenv requests
+---
 
-3. **Configure as variáveis de ambiente.**
+## 🛠️ Configuração e Instalação
 
-Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis:
+Siga os passos abaixo para configurar e executar o bot em seu ambiente local.
 
-telegram_secret_key=SEU_TOKEN_DO_TELEGRAM
+### Pré-requisitos
 
-panda_api_key=SUA_CHAVE_DE_API_DO_PANDASCORE
+Certifique-se de ter os seguintes itens prontos antes de começar:
 
-Substitua `SEU_TOKEN_DO_TELEGRAM` pelo token do seu bot do Telegram e `SUA_CHAVE_DE_API_DO_PANDASCORE` pela sua chave de API do PandaScore.
+* **Python:** Versão **3.8 ou superior**.
+* **Token do Telegram:** Um token de bot válido obtido através do **BotFather**.
+* **Chave da PandaScore:** Uma chave de API da **PandaScore** para acessar dados atualizados sobre os jogos.
+* **Gerenciador de Pacotes:** `pip` instalado para gerenciar as dependências.
 
-4. **Verifique as permissões do bot.**
+### 1. Instalação de Dependências
 
-Certifique-se de que o bot foi adicionado ao grupo ou canal desejado e que possui as permissões necessárias para enviar mensagens e interagir com os usuários.
+Clone o repositório para o seu ambiente local e instale as bibliotecas necessárias:
 
-## Como Iniciar o Bot
+```bash
+# Clone o repositório
+git clone [https://www.youtube.com/watch?v=351MZvGXpnY](https://www.youtube.com/watch?v=351MZvGXpnY)
+cd furiapp-bot
 
-1. **Execute o script principal.**
+# Instale as dependências
+pip install python-telegram-bot python-dotenv requests
+````
 
-No terminal, navegue até o diretório do projeto e execute o seguinte comando:
+### 2\. Variáveis de Ambiente
 
+Para manter suas chaves seguras, crie um arquivo chamado **`.env`** na raiz do projeto e adicione suas credenciais:
+
+```.env
+# TOKEN SECRETO DO BOT GERADO PELO BOTFATHER
+TELEGRAM_SECRET_KEY=SEU_TOKEN_DO_TELEGRAM
+
+# CHAVE DE API PARA OBTENÇÃO DE DADOS DOS JOGOS
+PANDA_API_KEY=SUA_CHAVE_DE_API_DO_PANDASCORE
+```
+
+> **Atenção:** Certifique-se de que o arquivo `.env` esteja listado no seu `.gitignore` para não expor suas chaves publicamente.
+
+### 3\. Permissões do Bot
+
+Após a configuração, verifique no Telegram se o bot possui as permissões necessárias para:
+
+  * Enviar mensagens.
+  * Interagir com os usuários no chat ou grupo/canal desejado.
+
+## ▶️ Como Iniciar o Bot
+
+Para colocar o bot em funcionamento, execute o script principal via terminal:
+
+```bash
 python furiapp_bot.py
+```
 
-2. **Interaja com o bot no Telegram.**
+Com o script rodando, abra o Telegram, procure pelo seu bot e envie o comando `/start` para começar a interagir\!
 
-Abra o Telegram, procure pelo seu bot (usando o nome ou o username configurado no BotFather) e envie o comando /start para começar a interação.
+## 📂 Estrutura do Projeto
 
-Funcionalidades
+A estrutura de arquivos do bot é simples e direta:
 
-📅 Últimos Jogos: Exibe os últimos jogos da equipe FURIA.
+```
+furiapp-bot/
+├── .env                  # Variáveis de ambiente (SECRETO)
+├── .gitignore            # Arquivo para ignorar arquivos sensíveis
+├── furiapp_bot.py        # Código principal do bot (Lógica e Comandos)
+├── logo.jpg              # Imagem do logo (opcional)
+└── README.md             # Este arquivo
+```
 
-📰 Últimas Notícias: Mostra as notícias mais recentes sobre a equipe.
+## 🤝 Contribuição
 
-🎲 Quiz: Um quiz interativo com perguntas sobre a FURIA.
+Sua ajuda é bem-vinda\! Se tiver sugestões para novos comandos, melhorias no quiz ou correção de bugs:
 
-👥 Nossas Feras: Lista os integrantes do time de CS:GO com links para seus perfis no Instagram.
-
-🔗 Links Úteis: Links para as redes sociais e canais oficiais da FURIA.
-
-👋 Até a próxima!: Encerra a interação com o bot.
-
-## Estrutura do Projeto
-
-# Arquivo de configuração de variáveis de ambiente
-.env                 
-
-# Arquivo para ignorar arquivos sensíveis no controle de versão
-.gitignore
-
-# Código principal do bot           
-furiapp_bot.py 
-
-# Imagem do logo (opcional)
-logo.jpg
-
-# Este arquivo README
-read.me              
+1.  Crie um **Fork** do projeto.
+2.  Crie uma nova *branch* (`git checkout -b feature/minha-melhoria`).
+3.  Faça o **Commit** das suas alterações (`git commit -m 'feat: adiciona comando de estatísticas'`).
+4.  Faça o **Push** para a *branch* (`git push origin feature/minha-melhoria`).
+5.  Abra um **Pull Request**.
